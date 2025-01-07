@@ -1,0 +1,85 @@
+marks = []
+n = int(input("Enter no. of students : "))
+for i in range(0,n):
+    a = int(input("Enter marks of students : "))
+    marks.append(a)
+print(marks)
+
+def average():
+    sum = 0
+    for i in range(0,n):
+        sum = sum + marks[i]
+        avg = sum/n
+    print("Average of  students : ",avg)
+
+def absent():
+    absent = 0
+    for i in range(0,n):
+        if marks[i] == -1:
+            absent += 1
+    print("No. of Absent students : ",absent)
+def max():
+    max = marks[0]
+    for i in marks:
+        if i > max:
+            max = i
+    print("The max no. is : ",max)
+def min():
+    min = marks[0]
+    for i in marks:
+        if i < min:
+            min = i
+    print("The min no. is : ",min)
+def countMax():
+    count = 0
+    max = marks[0]
+    for i in marks:
+        if i > max:
+            max = i
+    for i in marks:
+        if i == max:
+            count = count + 1
+    print("The count of max no. is : ",count)
+def countMin():
+    count = 0
+    min = marks[0]
+    for i in marks:
+        if i < min:
+            min = i
+    for i in marks:
+        if i == min:
+            count = count + 1
+    print("The count of min no. is : ",count)
+
+choice = int(input(
+    "1 : Find average   "
+    "2 : Find no. of absent students   "
+    "3 : Find max    "
+    "4 : Find min    "
+    "5 : Find count of max    "
+    "6 : Find count of min    ""\n"
+    "Enter your choice : "))
+
+while (choice != 0):
+    choice = int(input(
+        "1 : Find average   ""\n"
+        "2 : Find no. of absent students   ""\n"
+        "3 : Find max    ""\n"
+        "4 : Find min    ""\n"
+        "5 : Find count of max    ""\n"
+        "6 : Find count of min    ""\n"
+        "Enter your choice : "))
+
+    if choice == 1:
+        average()
+    if choice == 2:
+        absent()
+    if choice == 3:
+        max()
+    if choice == 4:
+        min()
+    if choice == 5:
+        countMax()
+    if choice == 6:
+        countMin()
+
