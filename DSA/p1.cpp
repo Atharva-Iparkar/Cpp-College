@@ -27,7 +27,8 @@ for(int j=0; j<size; j++) {
 if(data[index].id == 0) {
 data[index].name = n;
 data[index].id = i;
-data[index].tel = tel; 
+data[index].tel = tel;
+break; 
 } else {
 index = (index+1) % size;
 }
@@ -49,9 +50,11 @@ create_Record(name, id, tele);
 
 void display_Record() {
 for(int j=0; j<size; j++) {
+if(data[j].name != "") {
 cout<<"Name : "<<data[j].name<<endl;
 cout<<"Id : "<<data[j].id<<endl;
 cout<<"Telephone no. : "<<data[j].tel<<endl;
+}
 }
 }
 
@@ -60,11 +63,11 @@ int i;
 cout<<"Enter id of record want to search : ";
 cin>>i;
 for(int j=0; j<size; j++) {
-if() {
+if(data[i].id == data[j].id) {
 cout<<"Name : "<<data[j].name<<endl;
 cout<<"Id : "<<data[j].id<<endl;
 cout<<"Telephone no. : "<<data[j].tel<<endl;
-
+break;
 }
 }
 }
@@ -72,10 +75,8 @@ cout<<"Telephone no. : "<<data[j].tel<<endl;
 void delete_Record() {
 int i;
 int flag = 0;
-
 cout<<"Enter id of record want to delete : ";
 cin>>i;
-
 index = i % size;
 for(int j=0; j<size; j++) {
 if(i == data[index].id) {
@@ -95,23 +96,26 @@ hashing h;
 
 int ch;
 do {
-cout<<" 1. Get data\n 2. Delete\n 3. Display\n 4. Search\n";
+cout<<" 1. Get data\n 2. Delete\n 3. Display\n 4. Search\n 5. Exit\n";
 cout<<"Enter your choice : ";
 cin>>ch;
 
 switch(ch) {
 case 1:
 h.getdata_Create();
-
+break;
 case 2:
 h.delete_Record();
-
+break;
 case 3:
 h.display_Record();
-
+break;
 case 4:
 h.search_Record();
+break;
+case 5:
+return 0;
 }
 } 
-while(true);
+while(ch);
 }
