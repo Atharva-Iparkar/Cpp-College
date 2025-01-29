@@ -1,0 +1,64 @@
+#include<iostream>
+using namespace std;
+
+struct node {
+    int info;
+    struct node *left;
+    struct node *right;
+};
+
+class BST {
+public:
+    node *root;
+
+    BST() {
+        root = NULL;
+    }
+
+    void insert(node *&tree, int value) { 
+        if (tree == NULL) {
+            tree = new node();
+            tree->info = value;
+            tree->left = tree->right = NULL;
+            cout << "Node " << value << " inserted." << endl;
+            return;
+        }
+
+        if (tree->info == value) {
+            cout << "Element " << value << " already exists." << endl;
+            return;
+        }
+
+        if (tree->info > value) {
+            insert(tree->left, value);
+            cout << "Node " << value << " inserted at left." << endl;
+        } else {
+            insert(tree->right, value);
+            cout << "Node " << value << " inserted at right." << endl;
+        }
+    }
+};
+
+int main() {
+    BST bst;
+    int value;
+    int ch;
+
+    do {
+        cout << "Menu:\n 1. Insert a node\n 0. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> ch;
+
+        switch(ch) {
+            case 1:
+                cout << "Enter node to be inserted: ";
+                cin >> value;
+                bst.insert(bst.root, value);
+                break;
+
+            case 0:
+                cout << "Exiting the program." << endl;
+                return 0;
+        }
+    } while (true);
+}
