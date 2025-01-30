@@ -3,106 +3,6 @@ using namespace std;
 
 struct node {
     int info;
-    struct node *left;
-    struct node *right;
-};
-
-class BST {
-public:
-    node *root;
-
-    BST() {
-        root = NULL;
-    }
-
-    void insert(node *&tree, int value) { 
-        if (tree == NULL) {
-            tree = new node();
-            tree->info = value;
-            tree->left = tree->right = NULL;
-            cout << "Node " << value << " inserted." << endl;
-            return;
-        }
-
-        if (tree->info == value) {
-            cout << "Element " << value << " already exists." << endl;
-            return;
-        }
-
-        if (tree->info > value) {
-            insert(tree->left, value);
-            cout << "Node " << value << " inserted at left." << endl;
-        } else {
-            insert(tree->right, value);
-            cout << "Node " << value << " inserted at right." << endl;
-        }
-    }
-};
-
-int main() {
-    BST bst;
-    int value;
-    int ch;
-
-    do {
-        cout << "Menu:\n 1. Insert a node\n 0. Exit\n";
-        cout << "Enter your choice: ";
-        cin >> ch;
-
-        switch(ch) {
-            case 1:
-                cout << "Enter node to be inserted: ";
-                cin >> value;
-                bst.insert(bst.root, value);
-                break;
-
-            case 0:
-                cout << "Exiting the program." << endl;
-                return 0;
-        }
-    } while (true);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#include<iostream>
-using namespace std;
-
-
-struct node {
-    int info;
     struct node* left;
     struct node* right;
 
@@ -119,7 +19,6 @@ public:
     BST() {
         root = NULL;
     }
-
    
     void insert(node* &tree, int value) {
         if (tree == NULL) {
@@ -132,41 +31,64 @@ public:
         else if (value > tree->info) {
             insert(tree->right, value);  
         }
-        
     }
 
-    
-    void inorder(node* tree) {
+    void inorder(node* tree) {																																																																																																																																																																																																																											
         if (tree == NULL) return;
         inorder(tree->left);
         cout << tree->info << " ";
         inorder(tree->right);
     }
 
-   
     void inorder() {
         inorder(root);
     }
-};
 
+    void display(node* tree, int level = 0) {
+        if (tree == NULL) return;
+        display(tree->right, level + 1);
+        for (int i = 0; i < level; i++) {
+            cout << "    ";  
+        }
+        cout << tree->info << endl;
+        display(tree->left, level + 1);
+    }																																																																																																																																																																																														
+
+    void display() {
+        display(root);
+    }
+};
 
 int main() {
     BST tree;
-
+    int value;
+    int ch;
     
-    tree.insert(tree.root, 50);
-    tree.insert(tree.root, 30);
-    tree.insert(tree.root, 20);
-    tree.insert(tree.root, 40);
-    tree.insert(tree.root, 70);
-    tree.insert(tree.root, 60);
-    tree.insert(tree.root, 80);
+    do {
+        cout << " 1. Insert\n 2. Print inorder traversal\n 3. Display tree structure\n 4. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> ch;
+        
+        switch (ch) {
+            case 1:
+                cout << "Enter a value to insert in the tree: ";
+                cin >> value;
+                tree.insert(tree.root, value);
+                break;
+                
+            case 2:
+                cout << "Inorder Traversal: ";
+                tree.inorder();
+                cout << endl;
+                break;
+            
+            case 3:
+                cout << "Tree Structure:\n";
+                tree.display();
+                break;
 
-    
-    cout << "Inorder Traversal: ";
-    tree.inorder();
-    cout << endl;
-
-    return 0;
+            case 4:
+                return 0;
+        }
+    } while (ch);
 }
-
